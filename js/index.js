@@ -25,14 +25,14 @@ var app = {
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {  alert("called");
+    bindEvents: function() {  //alert("called");
         document.addEventListener('deviceready', this.onDeviceReady, false); 
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() { alert("34275528959");
+    onDeviceReady: function() { //alert("34275528959");
         console.log('Received Device Ready Event');
         console.log('calling setup push');
         app.setupPush();
@@ -74,7 +74,7 @@ var app = {
 			
 			////////////database store registration //////////
 			$("#GCM_ID").html('GCM ID...'+data.registrationId);
-			/*var dataString="regID="+data.registrationId;
+			var dataString="regID="+data.registrationId;
 			var BaseURL = "https://freshboxoffice.com/phonegap/";
 			$.ajax({
                     type: "POST",
@@ -92,7 +92,7 @@ var app = {
 						 else if(dataINS=="duplicate")
                         {}
                     }
-                });*/
+                });
 			
 			///////////////////database input registration ////////
         });
