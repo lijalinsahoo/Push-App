@@ -56,9 +56,25 @@ var app = {
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
 			
+			
+
+            var oldRegId = localStorage.getItem('registrationId');
+            if (oldRegId !== data.registrationId) {
+                // Save new registration ID
+                localStorage.setItem('registrationId', data.registrationId);
+                // Post registrationId to your app server as the value has changed
+            }
+
+            var parentElement = document.getElementById('registration');
+            var listeningElement = parentElement.querySelector('.waiting');
+            var receivedElement = parentElement.querySelector('.received');
+
+            listeningElement.setAttribute('style', 'display:none;');
+            receivedElement.setAttribute('style', 'display:block;');
+			
 			////////////database store registration //////////
 			$("#GCM_ID").html('GCM ID...'+data.registrationId);
-			var dataString="regID="+data.registrationId;
+			/*var dataString="regID="+data.registrationId;
 			var BaseURL = "https://freshboxoffice.com/phonegap/";
 			$.ajax({
                     type: "POST",
@@ -76,23 +92,9 @@ var app = {
 						 else if(dataINS=="duplicate")
                         {}
                     }
-                });
+                });*/
 			
 			///////////////////database input registration ////////
-
-            var oldRegId = localStorage.getItem('registrationId');
-            if (oldRegId !== data.registrationId) {
-                // Save new registration ID
-                localStorage.setItem('registrationId', data.registrationId);
-                // Post registrationId to your app server as the value has changed
-            }
-
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
-
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
         });
 
         push.on('error', function(e) {
